@@ -25,7 +25,7 @@ def gravarAluno():
   if nome and email and senha:
     conn = mysql.connect()
     cursor = conn.cursor()
-    cursor.execute('insert into tbl_alunos (nome_aluno, email_aluno, senha_aluno) VALUES (%s, %s, %s)', (nome, email, senha))
+    cursor.execute('insert into alunos (nome, email, senha) VALUES (%s, %s, %s)', (nome, email, senha))
     conn.commit()
   return render_template('forms.html')
 
@@ -34,7 +34,7 @@ def gravarAluno():
 def listar():
   conn = mysql.connect()
   cursor = conn.cursor()
-  cursor.execute('select nome_aluno, email_aluno, senha_aluno from tbl_alunos')
+  cursor.execute('select nome, email, senha from alunos')
   data = cursor.fetchall()
   conn.commit()
   return render_template('lista.html', datas=data)
